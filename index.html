@@ -184,6 +184,43 @@
     outline-offset: 4px;
   }
 
+  /* ---- coming soon: faded tile with overlay ---- */
+  .painting.soon {
+    cursor: default;
+  }
+  .painting.soon:hover {
+    transform: none;
+  }
+  .painting.soon .frame {
+    opacity: 0.45;
+  }
+  .painting.soon:hover .frame {
+    border-color: #2e2a25;
+    background: #1f1b16;
+  }
+  .painting.soon:hover img {
+    filter: brightness(0.78) contrast(1.04) saturate(0.94);
+    transform: none;
+  }
+  .painting.soon .frame::after {
+    content: "SOON";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 700;
+    font-size: clamp(14px, 1.3vw, 18px);
+    letter-spacing: 6px;
+    color: #f1efe8;
+    background: rgba(20, 17, 14, 0.72);
+    padding: 8px 16px;
+    border: 0.5px solid #6a6258;
+    opacity: 1;
+  }
+  .painting.soon .label {
+    color: #8a8278;
+  }
+
   /* ---- print: hide everything ---- */
   @media print {
     body { display: none; }
@@ -194,23 +231,22 @@
 
   <header class="masthead">
     <span class="wordmark">LAUF</span>
-    <a href="mailto:aaron@aaronlaufer.com">Support</a>
   </header>
 
   <div class="foyer">
 
     <main class="wall" role="navigation" aria-label="The foyer">
 
-      <a class="painting" href="#" aria-label="Run">
+      <div class="painting soon" aria-label="Run (coming soon)">
         <div class="frame">
           <img src="images/run.jpg" alt="" loading="lazy">
         </div>
         <div class="placard">
           <span class="label">RUN</span>
         </div>
-      </a>
+      </div>
 
-      <a class="painting" href="#" aria-label="Trust">
+      <a class="painting" href="https://altsdemo.aaronlaufer.com/" aria-label="Trust">
         <div class="frame">
           <img src="images/trust.jpg" alt="" loading="lazy">
         </div>
@@ -219,7 +255,7 @@
         </div>
       </a>
 
-      <a class="painting" href="#" aria-label="Hunt">
+      <a class="painting" href="https://dealhub.aaronlaufer.com/" aria-label="Hunt">
         <div class="frame">
           <img src="images/hunt.jpg" alt="" loading="lazy">
         </div>
@@ -228,14 +264,14 @@
         </div>
       </a>
 
-      <a class="painting" href="#" aria-label="Skin">
+      <div class="painting soon" aria-label="Skin (coming soon)">
         <div class="frame">
           <img src="images/skin.jpg" alt="" loading="lazy">
         </div>
         <div class="placard">
           <span class="label">SKIN</span>
         </div>
-      </a>
+      </div>
 
     </main>
 
