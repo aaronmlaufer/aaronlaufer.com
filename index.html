@@ -167,14 +167,38 @@
 
   /* ---- responsive: collapse to single column on mobile ---- */
   @media (max-width: 600px) {
-    .wall {
-      grid-template-columns: 1fr;
-      gap: 14px;
-      max-width: 400px;
+    body {
+      height: auto;
+      overflow: auto;
     }
     .foyer {
+      height: auto;
+      min-height: 100vh;
       justify-content: flex-start;
-      padding-top: clamp(72px, 12vh, 100px);
+      padding: clamp(80px, 14vh, 110px) 20px 40px;
+      gap: 24px;
+    }
+    .wall {
+      grid-template-columns: 1fr;
+      grid-template-rows: none;
+      grid-auto-rows: auto;
+      gap: 28px;
+      height: auto;
+      max-width: 100%;
+    }
+    .painting {
+      min-height: 0;
+    }
+    .painting .frame {
+      flex: none;
+      aspect-ratio: 4 / 3;
+      height: auto;
+    }
+    .painting .placard {
+      padding: 12px 2px 0;
+    }
+    .painting .label {
+      font-size: 18px;
     }
   }
 
