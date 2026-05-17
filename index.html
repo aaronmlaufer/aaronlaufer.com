@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Aaron Laufer — four rooms of ongoing work.">
+<meta name="theme-color" content="#c9551f">
+<meta property="og:title" content="LAUF">
+<meta property="og:description" content="Four rooms of ongoing work.">
+<meta property="og:image" content="https://aaronlaufer.com/images/trust.jpg">
+<meta property="og:url" content="https://aaronlaufer.com/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23c9551f%22/><text x=%2250%22 y=%2274%22 font-family=%22Helvetica,Arial,sans-serif%22 font-size=%2272%22 font-weight=%22900%22 text-anchor=%22middle%22 fill=%22%2314110e%22>L</text></svg>">
+<link rel="preload" as="image" href="images/trust.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="images/hunt.jpg" fetchpriority="high">
 <title>Lauf</title>
 <style>
   /* ---- reset ---- */
@@ -227,7 +238,7 @@
     transform: none;
   }
   .painting.soon .frame::after {
-    content: "SOON";
+    content: attr(data-when);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -245,6 +256,45 @@
     color: #8a8278;
   }
 
+  /* ---- entrance: stage the room ---- */
+  @keyframes settle {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes drop {
+    from { transform: translateY(-100%); }
+    to   { transform: translateY(0); }
+  }
+  .masthead {
+    animation: drop 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .caption {
+    opacity: 0;
+    animation: settle 700ms cubic-bezier(0.22, 1, 0.36, 1) 140ms forwards;
+  }
+  .painting {
+    opacity: 0;
+    animation: settle 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .painting:nth-of-type(1) { animation-delay: 220ms; }
+  .painting:nth-of-type(2) { animation-delay: 300ms; }
+  .painting:nth-of-type(3) { animation-delay: 380ms; }
+  .painting:nth-of-type(4) { animation-delay: 460ms; }
+
+  /* ---- reduced motion: skip the show ---- */
+  @media (prefers-reduced-motion: reduce) {
+    .masthead, .caption, .painting {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+    .painting, .painting img, .painting .frame {
+      transition: none;
+    }
+    .painting:hover { transform: none; }
+    .painting:hover img { transform: none; filter: brightness(0.78) contrast(1.04) saturate(0.94); }
+  }
+
   /* ---- print: hide everything ---- */
   @media print {
     body { display: none; }
@@ -259,10 +309,15 @@
 
   <div class="foyer">
 
-    <main class="wall" role="navigation" aria-label="The foyer">
+    <div class="caption">
+      <span class="title">Four Rooms, in no particular order</span>
+      <span class="meta">MMXXVI</span>
+    </div>
 
-      <div class="painting soon" aria-label="Run (coming soon)">
-        <div class="frame">
+    <main class="wall" role="navigation" aria-label="Rooms">
+
+      <div class="painting soon" aria-label="Run (coming Q4 2026)">
+        <div class="frame" data-when="Q4 2026">
           <img src="images/run.jpg" alt="" loading="lazy">
         </div>
         <div class="placard">
@@ -272,7 +327,7 @@
 
       <a class="painting" href="https://altsdemo.aaronlaufer.com/" aria-label="Trust">
         <div class="frame">
-          <img src="images/trust.jpg" alt="" loading="lazy">
+          <img src="images/trust.jpg" alt="" loading="eager" fetchpriority="high">
         </div>
         <div class="placard">
           <span class="label">TRUST</span>
@@ -281,15 +336,15 @@
 
       <a class="painting" href="https://dealhub.aaronlaufer.com/" aria-label="Hunt">
         <div class="frame">
-          <img src="images/hunt.jpg" alt="" loading="lazy">
+          <img src="images/hunt.jpg" alt="" loading="eager" fetchpriority="high">
         </div>
         <div class="placard">
           <span class="label">HUNT</span>
         </div>
       </a>
 
-      <div class="painting soon" aria-label="Skin (coming soon)">
-        <div class="frame">
+      <div class="painting soon" aria-label="Skin (coming Q3 2026)">
+        <div class="frame" data-when="Q3 2026">
           <img src="images/skin.jpg" alt="" loading="lazy">
         </div>
         <div class="placard">
